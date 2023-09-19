@@ -6,19 +6,30 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Hello !!</h1>
-  <button onClick="upload()">我要上傳驗證檔(另開視窗)</button>
+  <h1>Upload Demo</h1>
+  <button id="uploadBtn" onClick="upload3()">我要上傳驗證檔 (iFram)</button>
   <br>
-  <!-- <div style="height:20px;"></div>
-  <button onClick="upload2()">我要上傳驗證檔(彈窗)</button> -->
-  <!-- <iframe src="https://script.google.com/macros/s/AKfycbwHc-niTycDgkr7VUpdCUjb-rYxz5XJqOf_xBfKfn6mlHFJ7y0rYibalCghv9YDOcGZ/exec?name=alex"></iframe> -->
-  <!-- <iframe src="https://script.google.com/macros/s/AKfycbwgO73hBaI9rNOK9qYosv8jlS2YM2I00HQZN6KYE7BcWYcOpoafb2VEwakhO7x0DDcb/exec?name=ggyy"></iframe> -->
+  <div id="uploadPage"></div>
+  
   <script>
     function upload() {
-      window.open("https://script.google.com/macros/s/AKfycbyY_3P4rbJdoetKEg-ksu9sMb19lqx2DrQzzalVi8CFJJUVam0hNZH1_tga4TmRUt_o/exec?name=alex")
+      window.open("https://script.google.com/macros/s/AKfycbzU3RTJnj-8AGhW074gnDW07lGIXtY2sLVxch_rJKX5hzwOY3l0x9ozLeTEpYd73G3b/exec?name=john")
     }
     function upload2() {
       window.open("https://script.google.com/macros/s/AKfycbyS2nEY_DmZaRvwB9yUn7gJYjv-56GXoewUf5LGwV7N_r3nvfnjaI9C0MWkBNzCq0be/exec?name=alex", "verify", "width=700,height=400")
+    }
+    function upload3() {
+      const uploadBtn = document.querySelector('#uploadBtn')
+      uploadBtn.setAttribute('disabled', '');
+      
+      const el = document.querySelector('#uploadPage')
+      const iframe = document.createElement('iframe')
+      iframe.width = '500px'
+      iframe.height = '450px'
+      iframe.frameBorder = '0'
+      iframe.scrolling = 'no'
+      iframe.src = 'https://script.google.com/macros/s/AKfycbxdaPjr3q6K_-glznCWViqQcLbs5-GRU3cxz-Ibjfn5UO7KWugLxwVS-80lnjDu1uos/exec?name=kobe'
+      el.prepend(iframe)
     }
   </script>
 </body>
