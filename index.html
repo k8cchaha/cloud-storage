@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Upload Demo</h1>
-  <button id="uploadBtn" onClick="upload3()">我要上傳驗證檔 (iFram)</button>
+  <button id="uploadBtn" onClick="upload3()">我要上傳驗證檔 (iFrame)</button>
   <br>
   <div id="uploadPage"></div>
   
@@ -21,7 +21,7 @@
     function upload3() {
       const uploadBtn = document.querySelector('#uploadBtn')
       uploadBtn.setAttribute('disabled', '');
-      
+
       const el = document.querySelector('#uploadPage')
       const iframe = document.createElement('iframe')
       iframe.width = '500px'
