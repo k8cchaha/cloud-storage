@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <form id="myForm" class="kyc-pop-form">
+        <div style="display: none">
+          帳號：<input type="text" name="myName" class=”kyc-input” value="<?= data.name ?>" readonly="readonly">
+          <br>
+          驗證類型：<input type="text" name="type" class=”kyc-input” value="<?= data.type ?>" readonly="readonly">
+        </div>
+        <label for="file-upload" class="custom-file-upload">
+          <i class="fa fa-cloud-upload"></i>
+          選擇檔案
+        </label>
+        <input type="file" id="file-upload" name="myFile" accept="image/*">
+        <br>
+        <img src="" alt="" style="max-height:200px; margin: 10px 0;">
+        <br>
+        <input type="submit" id="submit" class="byc-btn" value="上傳檔案"
+              onclick="this.value='檔案上傳中...';
+                        google.script.run.withSuccessHandler(fileUploaded)
+                        .uploadFiles(this.parentNode);
+                        return false;" >
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        var input = document.getElementById('file-upload')
+        var demo = document.getElementsByTagName('img')[0]
+        var reader = new FileReader()
+        input.addEventListener('change', updateImg)
+
+        function updateImg(e) {
+          var upImg = e.target.files || e.dataTransfer.files
+          var imgSize = upImg[0].size
+          console.log('Size: ', imgSize)
+          reader.readAsDataURL(upImg[0])
+        }
+
+        function fileUploaded(status) {
+            document.getElementById('myForm').style.display = 'none';
+            document.getElementById('output').innerHTML = status;
+        }
+
+        reader.onload = function(e) {
+          demo.src = e.target.result
+        }
+    </script>
+
+    <style>
+    .kyc-pop-form {
+      background: linear-gradient(to bottom, #f7f7f7 0%, #c0c0c0 100%);
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(20,20,20,0.45);
+      font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #898989;
+    }
+    .kyc-input {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #c1c1c1;
+    }
+    .byc-btn {
+      border-radius: 5px;
+      border: none;
+      background: #437ebf;
+      box-shadow: 2px 2px 0px #0a56a7;
+      padding: 10px 15px;
+      text-align: center;
+      color: white;
+    }
+
+    .custom-file-upload {
+      border: 1px solid #7f7f7f;
+      border-radius: 5px;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .custom-file-upload:hover,.custom-file-upload:active {
+      background: #7f7f7f;
+      color: #FFF;
+    }
+    input.byc-btn {
+      border-radius: 5px;
+      border: none;
+      background: #437ebf;
+      box-shadow: 2px 2px 0px #0a56a7;
+      padding: 10px 15px;
+      text-align: center;
+      color: white;
+      transition: all .15s;
+    }
+    input.byc-btn:hover, input.byc-btn:active {
+      background: #1f61a9;
+      box-shadow: inset 3px 3px 5px #0a417d;
+    }
+    input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    </style>
+  </body>
+</html>
