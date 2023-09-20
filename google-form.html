@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <form id="myForm">
+        帳號：<input type="text" name="myName" value="<?= data.name ?>" readonly="readonly">
+        <br>
+        驗證類型：<input type="text" name="type" value="<?= data.type ?>" readonly="readonly">
+        <br>
+        <input type="file" name="myFile" id="upload" accept="image/*">
+        <br>
+        <img src="" alt="" style="max-height:200px">
+        <br>
+        <input type="submit" value="上傳檔案" 
+              onclick="this.value='檔案上傳中...';
+                        google.script.run.withSuccessHandler(fileUploaded)
+                        .uploadFiles(this.parentNode);
+                        return false;">
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        var input = document.getElementById('upload')
+        var demo = document.getElementsByTagName('img')[0]
+        var reader = new FileReader()
+        input.addEventListener('change', updateImg)
+
+        function updateImg(e) {
+          var upImg = e.target.files || e.dataTransfer.files
+          var imgSize = upImg[0].size
+          console.log('YOYO: ', imgSize)
+          reader.readAsDataURL(upImg[0])
+        }
+
+        function fileUploaded(status) {
+            document.getElementById('myForm').style.display = 'none';
+            document.getElementById('output').innerHTML = status;
+        }
+
+        reader.onload = function(e) {
+          demo.src = e.target.result
+        }
+    </script>
+
+    <style>
+    input {
+      margin-bottom: 20px;
+    }
+    </style>
+  </body>
+</html>
