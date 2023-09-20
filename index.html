@@ -3,22 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>KYC</title>
 </head>
 <body>
   <h1>Upload Demo</h1>
-  <button id="uploadBtn" onClick="upload3()">我要上傳驗證檔 (iFrame)</button>
+  <button id="uploadBtn" onClick="upload()">我要上傳驗證檔 (iFrame)</button>
   <br>
   <div id="uploadPage"></div>
   
   <script>
     function upload() {
-      window.open("https://script.google.com/macros/s/AKfycbzU3RTJnj-8AGhW074gnDW07lGIXtY2sLVxch_rJKX5hzwOY3l0x9ozLeTEpYd73G3b/exec?name=john")
-    }
-    function upload2() {
-      window.open("https://script.google.com/macros/s/AKfycbyS2nEY_DmZaRvwB9yUn7gJYjv-56GXoewUf5LGwV7N_r3nvfnjaI9C0MWkBNzCq0be/exec?name=alex", "verify", "width=700,height=400")
-    }
-    function upload3() {
       const uploadBtn = document.querySelector('#uploadBtn')
       uploadBtn.setAttribute('disabled', '');
 
@@ -28,7 +22,7 @@
       iframe.height = '450px'
       iframe.frameBorder = '0'
       iframe.scrolling = 'no'
-      iframe.src = 'https://script.google.com/macros/s/AKfycbxdaPjr3q6K_-glznCWViqQcLbs5-GRU3cxz-Ibjfn5UO7KWugLxwVS-80lnjDu1uos/exec?name=kobe'
+      iframe.src = 'https://script.google.com/macros/s/AKfycbxO-lmobFcvrMt6qPCZ7s6-6pBONKs_DBecv2gi62A-6pcDQzUgp3i0Hh8CEJi534uL/exec?brand=aa&promotion=bb'
       el.prepend(iframe)
     }
   </script>
