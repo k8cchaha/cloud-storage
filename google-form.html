@@ -4,20 +4,24 @@
     <base target="_top">
   </head>
   <body>
-    <form id="myForm">
-        帳號：<input type="text" name="myName" value="<?= data.name ?>" readonly="readonly">
-        <br>
-        驗證類型：<input type="text" name="type" value="<?= data.type ?>" readonly="readonly">
-        <br>
+    <form id="myForm" class="kyc-pop-form">
+        <div style="display: none">
+          帳號：<input type="text" name="myName" class=”kyc-input” value="<?= data.name ?>" readonly="readonly">
+          <br>
+          驗證類型：<input type="text" name="type" class=”kyc-input” value="<?= data.type ?>" readonly="readonly">
+        </div>
+        <label for="upload" class="custom-file-upload">
+          選擇檔案
+        </label>
         <input type="file" name="myFile" id="upload" accept="image/*">
         <br>
-        <img src="" alt="" style="max-height:200px">
+        <img src="" alt="" style="margin:10px 0">
         <br>
         <input type="submit" value="上傳檔案" 
               onclick="this.value='檔案上傳中...';
                         google.script.run.withSuccessHandler(fileUploaded)
                         .uploadFiles(this.parentNode);
-                        return false;">
+                        return false;" class="byc-btn">
     </form>
 
     <div id="output"></div>
@@ -38,6 +42,7 @@
         function fileUploaded(status) {
             document.getElementById('myForm').style.display = 'none';
             document.getElementById('output').innerHTML = status;
+            document.getElementById('output').classList.add("kyc-pop-done");
         }
 
         reader.onload = function(e) {
@@ -46,8 +51,90 @@
     </script>
 
     <style>
-    input {
-      margin-bottom: 20px;
+    .kyc-pop-form {
+      background: linear-gradient(to bottom, #f7f7f7 0%, #c0c0c0 100%);
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(20,20,20,0.45);
+      font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #898989;
+    }
+    .kyc-input {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #c1c1c1;
+    }
+    .byc-btn {
+      border-radius: 5px;
+      border: none;
+      background: #437ebf;
+      box-shadow: 2px 2px 0px #0a56a7;
+      padding: 10px 15px;
+      text-align: center;
+      color: white;
+    }
+
+    .custom-file-upload {
+      border: 1px solid #7f7f7f;
+      border-radius: 5px;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .custom-file-upload:hover,.custom-file-upload:active {
+      background: #7f7f7f;
+      color: #FFF;
+    }
+    input.byc-btn {
+      border-radius: 5px;
+      border: none;
+      background: #437ebf;
+      box-shadow: 2px 2px 0px #0a56a7;
+      padding: 10px 15px;
+      text-align: center;
+      color: white;
+      transition: all .15s;
+    }
+    input.byc-btn:hover, input.byc-btn:active {
+      background: #1f61a9;
+      box-shadow: inset 3px 3px 5px #0a417d;
+    }
+    input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    img {
+      max-width: 500px;
+      max-height: 400px;
+      margin: 10px 0;
+    }
+    @media (max-width: 600px){
+      img { 
+        max-width: 240px;
+        max-height: 180px;
+        margin: 10px 0;
+      }
+    }
+    body {
+      background-color: transparent;
+    }
+    .kyc-pop-done {
+      background: linear-gradient(to bottom, #f7f7f7 0%, #c0c0c0 100%);
+      padding: 25px;
+      box-shadow: 0 10px 35px rgba(20,20,20,0.45);
+      font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #898989;
+      text-align: center;
+      min-height: 100px;
+      line-height: 100px;
     }
     </style>
   </body>
