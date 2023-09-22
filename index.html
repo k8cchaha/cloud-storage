@@ -12,7 +12,7 @@
   <div id="uploadPage"></div>
   
   <script>
-    const serviceUrl = 'https://script.google.com/macros/s/AKfycbweSfxxCUXIcxLboRUj6zAMPVBlEeG7xgh_nWPFNaJ-zLEDVfKxoA3_zKnX-ePBgd7tvQ/exec'
+    const serviceUrl = 'https://script.google.com/macros/s/AKfycbz9tyo6P6bRMaxn0bJEC33U94wbtN0XftBt4Af9Dmi5ypF-7jLF_yAku22i_vhipJG72Q/exec'
     function upload() {
       const uploadBtn = document.querySelector('#uploadBtn')
       uploadBtn.setAttribute('disabled', '');
@@ -23,7 +23,7 @@
       iframe.height = '450px'
       iframe.frameBorder = '0'
       iframe.scrolling = 'no'
-      iframe.src = serviceUrl + '?brand=aa&promotion=bb&type=Address'
+      iframe.src = serviceUrl + '?brand=aa&promotion=bb&type=Address&lang=jp'
       el.prepend(iframe)
     }
   </script>
